@@ -16,12 +16,37 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+/* custom scroll bar */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: gray;
+}
+
+::-webkit-scrollbar-thumb {
+  background: red;
+  width: 10px;
+  border-radius: 20px;
+  border: white solid 2px;
+}
+
+.swiper-pagination-bullet {
+  background-color: #f5c85f !important;
+  opacity: 0.5;
+}
+.swiper-pagination-bullet-active {
+  background-color: #f5c85f !important;
+  opacity: 1;
+}
+/* .swiper-button-prev,
+.swiper-button-next {
+  display: none !important;
+} */
