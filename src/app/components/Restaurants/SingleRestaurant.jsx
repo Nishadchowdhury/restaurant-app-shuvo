@@ -1,5 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
+import { BiRightArrowCircle } from "react-icons/bi";
+
 
 function SingleRestaurant({ name, picture, id, }) {
 
@@ -9,21 +11,23 @@ function SingleRestaurant({ name, picture, id, }) {
     return (
         <Link href={`/restaurant/${id}`} >
 
-            <div class="flex hover:scale-105 transition-all flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden">
-                <Image
+            <div className="group relative hover:scale-105 transition-all overflow-hidden" >
+                <div class="  bg-white shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden">
+                    <Image
 
-                    class="w-full h-auto rounded-t-xl  hover:scale-105 overflow-hidden transition-all "
-                    alt="Image Description"
-                    src={picture}
-                    width={100}
-                    height={100}
-                />
-                <div class="p-4 md:p-5">
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-white">
-                        Visit restaurant
-                    </h3>
+                        class="w-full h-auto rounded-t-xl  group-hover:scale-105 overflow-hidden transition-all group-hover:brightness-50 "
+                        alt="Image Description"
+                        src={picture}
+                        width={100}
+                        height={100}
+                    />
 
+                </div>
 
+                <div className="absolute w-full h-10 bg-black bg-opacity-30 backdrop-blur-sm transition-all -bottom-10  opacity-0  group-hover:bottom-0 group-hover:opacity-100 rounded-b-xl flex justify-between items-center px-5 " >
+                    {name}
+
+                    <BiRightArrowCircle className="scale-125" />
                 </div>
             </div>
         </Link>

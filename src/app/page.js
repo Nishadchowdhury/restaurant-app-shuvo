@@ -4,6 +4,7 @@ import HomePageSlider from "./components/Sliders/HomePageSlider";
 import Restaurants from "./components/Restaurants/Restaurants";
 import Footer from "./components/Footer/Footer";
 import { SessionProvider } from "next-auth/react";
+import Navbar from "./components/Navbar/Navbar";
 
 export default function Home() {
   const theme = "dark";
@@ -15,10 +16,10 @@ export default function Home() {
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between
-       bg-[#FEDE7E]  text-black
-       ${"theme"} dark:text-white  dark:bg-coffee `}
+     
+       ${"theme"}    `}
     >
-      <section className="w-full">
+      <section className="w-full  bg-background  ">
         <div className=" p-6">
           <HomePageSlider />
           <Restaurants />

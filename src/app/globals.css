@@ -24,20 +24,24 @@
 
 /* custom scroll bar */
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: gray;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: red;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 65, 104, 1) 0%,
+    rgba(48, 73, 201, 1) 57%
+  );
   width: 10px;
   border-radius: 20px;
-  border: white solid 2px;
 }
 
+/* swiper js custom css */
 .swiper-pagination-bullet {
   background-color: #f5c85f !important;
   opacity: 0.5;
@@ -50,3 +54,30 @@
 .swiper-button-next {
   display: none !important;
 } */
+
+/* navbar custom css */
+
+.navbar {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.8520658263305322) 0%,
+    rgba(97, 29, 0, 1) 36%
+  );
+}
+
+.baseGradient {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 65, 104, 1) 0%,
+    rgba(48, 73, 201, 1) 57%
+  );
+}
+
+.baseGradient90 {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 65, 104, 1) 0%,
+    rgba(48, 73, 201, 1) 57%
+  );
+}

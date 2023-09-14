@@ -13,7 +13,7 @@ module.exports = {
       colors: {
         coffee: "#864D27",
         caramel: "#DE7230",
-        cheese: "#F5C85F",
+        background: "#040D21",
         malai: "#E6E392",
         black: "#05030F",
       },

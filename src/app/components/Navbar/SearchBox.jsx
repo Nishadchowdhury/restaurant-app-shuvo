@@ -15,11 +15,12 @@ function SearchBox() {
 
     return (
         <>
-            <div class=" relative flex rounded-md shadow-sm w-[30%] border-[1px] text-black border-white" >
+            <div class=" relative flex rounded-md shadow-sm w-[30%]  text-black border-white" >
                 <Input
                     value={searchText}
                     placeholder={"Find cuisines"}
-                    change={setSearchText}
+                    onChange={setSearchText}
+                    className={"rounded-l-md rounded-r-none w-full pl-12 text-white"}
                 />
                 <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4">
                     <svg class="h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

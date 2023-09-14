@@ -11,7 +11,7 @@ import Image from "next/image"
 function Footer() {
     return (
 
-        <div className="bg-blue-900 h-60 text-white" >
+        <div className="bg-slate-900 h-60 text-white" >
             <div className="h-full w-full flex flex-row items-center  justify-around ">
                 <div className="flex flex-col" >
                     <Link href={'/'}> Name Store </Link>
@@ -44,7 +44,7 @@ function Footer() {
                 </div>
 
             </div>
-            <div className="h-6 bg-blue-950 text-center text-white " >
+            <div className="h-6 text-center text-white " >
                 Copyright © {`"Name"`} 2023. All Rights Reserved.
             </div>
         </div>

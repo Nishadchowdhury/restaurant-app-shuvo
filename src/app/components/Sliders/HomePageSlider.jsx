@@ -40,13 +40,13 @@ function HomePageSlider() {
                 >
                     {imagesForSlider &&
                         imagesForSlider.map(image => (
-                            <SwiperSlide className="rounded-3xl overflow-hidden" key={image}>
-                                <div className="w-full h-[200px] lg:h-[300px] overflow-hidden flex items-center justify-center ">
+                            <SwiperSlide className="rounded-3xl overflow-hidden bg-blue-600" key={image}>
+                                <div className="w-full h-[200px] lg:h-[200px] overflow-hidden flex items-center justify-center ">
                                     <Image
                                         src={imagesForSlider[0]}
                                         fill
                                         alt="sliderImage"
-                                        className="w-full h-auto  hover:scale-105 transition-all"
+                                        className="w-full h-auto  hover:scale-105 transition-all object-cover"
                                     />
                                 </div>
                             </SwiperSlide>

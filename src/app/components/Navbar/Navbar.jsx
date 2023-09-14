@@ -1,20 +1,32 @@
+"use client"
+import { usePathname } from 'next/navigation'
 import Image from "next/image"
 import Link from "next/link"
 import { BsCart2 } from 'react-icons/bs';
-import MenuDropDown from "./MenuDropDown";
 import SearchBox from "./SearchBox";
+import Button from "../Button/Button";
 
 function Navbar() {
 
+    const pathname = usePathname()
+
+    const hiddenPaths = ['/login',]
+
+    const isShow = () => {
+        console.log("isShow()")
+
+        if (hiddenPaths.includes(pathname)) {
+            return false
+        } else {
+            return true
+        }
+
+    }
+
+
     return (
 
-        <header className="flex flex-wrap  sm:justify-start sm:flex-nowrap z-50 w-full 
-       bg-caramel text-sm py-1 dark:bg-coffee 
-        sticky top-0
-
-
-
-        ">
+        <header className={`flex flex-wrap  backdrop-blur-sm sm:justify-start sm:flex-nowrap z-50 w-full sticky top-0 ${!isShow() && "hidden"} `}>
             <nav className=" pl-12 w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" aria-label="Global">
                 <div className="flex items-center justify-between">
                     <Link href={'/'}>  <Image src={'/assets/imgs/logo.png'} alt="logo" width={100} height={100} className="w-[65px] " /></Link>
@@ -33,17 +45,9 @@ function Navbar() {
 
 
                     <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5">
+
+
                         <SearchBox />
-                        {/* <MenuDropDown />
-
-                        <Link href={'/'}
-                            className=" py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium w-fit
-                
-                            shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-1 
-                            focus:ring-offset-white transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
-
-                        >Restaurants
-                        </Link> */}
 
                         {false ? <div className="flex items-center gap-4" >
                             <Image
@@ -56,12 +60,8 @@ function Navbar() {
                         </div> : (
                             <>
                                 <Link href={'/login'}
-                                    className=" py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium w-fit
-                
-                            shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-1 
-                            focus:ring-offset-white transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
-
-                                >Login
+                                >
+                                    <Button className={'text-white'} text={"Login"} />
                                 </Link>
 
                             </>

@@ -1,21 +1,36 @@
 "use client"
-function Input({ change, placeholder, value }) {
+function Input({ submit, onChange, placeholder, value, type, className, name, ...rest }) {
+
+    const inputClass = ` bg-inherit block rounded-md shadow-sm  text-sm focus:z-10 
+     dark:bg-slate-900 dark:border-gray-700 text-black ${className}`
+
     return (
-        <input type="text" id="hs-search-box-with-loading-5" name="hs-search-box-with-loading-5"
+        <>{type === "submit" ?
 
-            class="py-3 px-4 bg-inherit  pl-11 block w-full  shadow-sm rounded-l-md text-sm focus:z-10 
-            focus:border-0
-            dark:bg-slate-900 dark:border-gray-700 text-black focus-within:outline-1 outline-offset-2
-          placeholder-white
 
-     focus:border-coffee 
-        "
+            <input className={inputClass}
+                onClick={submit}
+                placeholder={placeholder}
+                type="submit"
+                value={placeholder}
+                {...rest}
+            />
 
-            onChange={(e) => change(e.target.value)}
-            value={value}
-            placeholder={placeholder}>
+            :
 
-        </input>
+
+            <input
+                class={inputClass}
+
+                name={name || ""}
+                type={type || "text"}
+                onChange={(e) => onChange(e.target.value)}
+                value={value}
+                placeholder={placeholder}
+                {...rest}
+            />}
+
+        </>
     )
 }
 export default Input
