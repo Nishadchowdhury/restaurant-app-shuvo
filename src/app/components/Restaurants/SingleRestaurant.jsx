@@ -1,3 +1,4 @@
+
 import Image from "next/image"
 import Link from "next/link"
 import { BiRightArrowCircle } from "react-icons/bi";
@@ -5,17 +6,14 @@ import { BiRightArrowCircle } from "react-icons/bi";
 
 function SingleRestaurant({ name, picture, id, }) {
 
-
-
-
     return (
         <Link href={`/restaurant/${id}`} >
 
             <div className="group relative hover:scale-105 transition-all overflow-hidden" >
-                <div class="  bg-white shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden">
+                <div className="  bg-white shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden">
                     <Image
 
-                        class="w-full h-auto rounded-t-xl  group-hover:scale-105 overflow-hidden transition-all group-hover:brightness-50 "
+                        className="w-full h-auto rounded-t-xl  group-hover:scale-105 overflow-hidden transition-all group-hover:brightness-50 "
                         alt="Image Description"
                         src={picture}
                         width={100}

@@ -1,6 +1,6 @@
 function page() {
 
-    console.log("params")
+    ////console.log("params")
     return (
         <div>Hello restaurant</div>
     )

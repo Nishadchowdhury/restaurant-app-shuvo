@@ -2,6 +2,7 @@
 const nextConfig = {
   distDir: "build",
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -13,7 +14,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "plus.unsplash.com",
+        hostname: "picsum.photos",
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
       },
     ],
   },

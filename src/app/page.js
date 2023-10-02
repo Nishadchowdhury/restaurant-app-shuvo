@@ -1,17 +1,11 @@
-"use client";
-import { useEffect } from "react";
 import HomePageSlider from "./components/Sliders/HomePageSlider";
 import Restaurants from "./components/Restaurants/Restaurants";
 import Footer from "./components/Footer/Footer";
-import { SessionProvider } from "next-auth/react";
-import Navbar from "./components/Navbar/Navbar";
+import Foods from "./components/foodItems/Foods";
+import CartModal from "./components/Modals/CartModal";
 
 export default function Home() {
   const theme = "dark";
-
-  useEffect(() => {
-    import("preline");
-  }, []);
 
   return (
     <main
@@ -23,6 +17,9 @@ export default function Home() {
         <div className=" p-6">
           <HomePageSlider />
           <Restaurants />
+          {/* <Restaurants /> */}
+
+          <Foods />
         </div>
         <Footer />
       </section>

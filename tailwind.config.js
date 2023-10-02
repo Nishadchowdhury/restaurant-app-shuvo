@@ -11,8 +11,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        coffee: "#864D27",
-        caramel: "#DE7230",
+        primary: "#00FFFF",
+        secondary: "#DE7230",
         background: "#040D21",
         malai: "#E6E392",
         black: "#05030F",

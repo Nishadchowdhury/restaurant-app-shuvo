@@ -1,44 +1,80 @@
 import Image from "next/image"
+import Link from "next/link";
+import { baseURL } from "../../hooks/envCheck";
+import { TbCurrencyTaka } from "react-icons/tb"
+import { HiShoppingBag } from "react-icons/hi2";
+import Button from "../../components/Button/Button";
+import useCartToLocalStorage from "../../hooks/useAddToCart";
+import isMounted from "../../hooks/useMounted";
 
-function page({ params }) {
-    console.log(params)
+
+
+async function getFood(foodId) {
+
+    let res = await fetch(`${baseURL}/api/cuisine`, {
+        next: { revalidate: 10000 },
+        headers: { foodId: foodId },
+    },
+    )
+    res = await res.json();
+    return res;
+}
+
+
+
+
+async function page({ params }) {
+    const { food } = await getFood(params?.foodId);
+
+    const { cuisineImg, isExclusive, availableAt, findWith, name, price, } = food || {};
+
+    const customProps = { from: "occupation" };
+
+
     return (
+        <section className="text-primary body-font overflow-hidden">
+            <div className="container px-5  mx-auto">
+                <div className="lg:w-4/5 mx-auto flex flex-wrap">
 
-        <div className="flex items-center " >
+                    <Image alt="ecommerce" className="lg:w-1/2 w-full h-80 object-cover object-center rounded"
+                        src={cuisineImg}
 
-            <div
+                        width={400} height={400} />
+                    <div className="relative lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                        <h2 className="text-sm title-font  tracking-widest uppercase ">cuisine NAME</h2>
+                        <h1 className=" text-3xl title-font font-medium mb-1 underline">{name}</h1>
+                        <div className="flex flex-col my-4 ">
+                            <h2 className="text-sm title-font  tracking-widest uppercase ">Restaurant NAME</h2>
+                            <h1 className=" text-3xl title-font font-medium mb-1 underline">{availableAt}</h1>
 
-                class=" grid grid-cols-4 shadow-sm sm:flex rounded-xl overflow-hidden  dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]
-                2xl:w-[90%] h-[250px] mx-auto
-                "
-            >
-                <div class="flex-shrink-0 relative w-[40%] ">
-                    <Image class="w-full h-full absolute top-0 left-0 object-cover `"
-                        src="https://plus.unsplash.com/premium_photo-1664702602982-7eab3da92601?crop&w=500&q=80"
-                        width={500}
-                        height={400}
-                        alt="Image Description" />
-                </div>
-
-                <div className="p-10" >
-
-                    <blockquote class="relative ">
-                        <svg class="absolute top-0 left-0 transform -translate-x-6 -translate-y-8 h-16 w-16 text-gray-100 dark:text-gray-700" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M7.39762 10.3C7.39762 11.0733 7.14888 11.7 6.6514 12.18C6.15392 12.6333 5.52552 12.86 4.76621 12.86C3.84979 12.86 3.09047 12.5533 2.48825 11.94C1.91222 11.3266 1.62421 10.4467 1.62421 9.29999C1.62421 8.07332 1.96459 6.87332 2.64535 5.69999C3.35231 4.49999 4.33418 3.55332 5.59098 2.85999L6.4943 4.25999C5.81354 4.73999 5.26369 5.27332 4.84476 5.85999C4.45201 6.44666 4.19017 7.12666 4.05926 7.89999C4.29491 7.79332 4.56983 7.73999 4.88403 7.73999C5.61716 7.73999 6.21938 7.97999 6.69067 8.45999C7.16197 8.93999 7.39762 9.55333 7.39762 10.3ZM14.6242 10.3C14.6242 11.0733 14.3755 11.7 13.878 12.18C13.3805 12.6333 12.7521 12.86 11.9928 12.86C11.0764 12.86 10.3171 12.5533 9.71484 11.94C9.13881 11.3266 8.85079 10.4467 8.85079 9.29999C8.85079 8.07332 9.19117 6.87332 9.87194 5.69999C10.5789 4.49999 11.5608 3.55332 12.8176 2.85999L13.7209 4.25999C13.0401 4.73999 12.4903 5.27332 12.0713 5.85999C11.6786 6.44666 11.4168 7.12666 11.2858 7.89999C11.5215 7.79332 11.7964 7.73999 12.1106 7.73999C12.8437 7.73999 13.446 7.97999 13.9173 8.45999C14.3886 8.93999 14.6242 9.55333 14.6242 10.3Z" fill="currentColor" />
-                        </svg>
-
-                        <div class="relative z-10">
-                            <p class="text-gray-800 dark:text-white"><em>
-                                I just wanted to say that I'm very happy with my purchase so far. The documentation is outstanding - clear and detailed.
-                            </em></p>
+                            {isExclusive && <span className="text-green-600  mt-4 "> {"It's an exclusive item.!"} </span>}
                         </div>
-                    </blockquote>
+
+
+                        <div className="flex justify-between xl:absolute 2xl:absolute bottom-0 w-full">
+                            <div className="flex flex-row items-center ml-2 text-xl "> {price} <span className="inline scale-110" >
+                                <TbCurrencyTaka /></span> </div>
+
+                            <div className="flex flex-row items-center justify-center">
+                                <Link href={{
+                                    pathname: `/checkout/${params?.foodId}`,
+                                    query: food
+                                }}>
+                                    <button className="py-3 px-4 flex flex-row items-center justify-center gap-3 bg-primary bg-opacity-10 rounded-md hover:opacity-75 transition-all" >
+                                        Place order <HiShoppingBag />
+                                    </button>
+                                </Link>
+
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-
             </div>
+        </section>
 
 
-        </div>
     )
 }
 export default page

@@ -1,42 +1,31 @@
-"use client"
-import Image from "next/image"
-import { useEffect, useState } from "react";
-import { Grid, Pagination } from "swiper/modules";
-import { SwiperSlide, Swiper } from "swiper/react"
-import SingleRestaurant from "./SingleRestaurant";
+import SingleRestaurant from '../Restaurants/SingleRestaurant'
+import { baseURL } from '../../hooks/envCheck';
+// import { getServerSession } from 'next-auth';
 
 
+async function getRestaurants() {
+    // const session = await getServerSession();
 
-function Restaurants() {
+    let res = await fetch(`${baseURL}/api/restaurants`, {
+        next: { revalidate: 5 }
+    })
+    res = await res.json();
+    return res?.restaurantList;
+}
 
-    const [restaurants, setRestaurants] = useState([])
-
-    useEffect(() => {
-
-        async function getData() {
-            const res = await fetch("/restaurants.json");
-            const data = await res.json()
-            setRestaurants(data)
-        }
-
-        getData()
-    }, [])
-
+async function Restaurants() {
+    const restaurants = await getRestaurants()
 
     return (
-        <div className="  mt-7 "  >
-            <h1 className="text-center text-2xl font-bold "> All Restaurants </h1>
+        <div className="mt-7">
+            <h1 className="ml-14 text-2xl font-bold "> Order By Restaurants </h1>
             <div className="border-dashed border-2 border-gray-600 rounded-md grid gap-4 grid-cols-2 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3  mt-6  p-3 ">
 
 
+                {restaurants && restaurants.map(({ restaurantId, restaurantData }) => (
 
-                {
-                    restaurants && restaurants.map(({ name, picture, _id, price }) => (
-
-                        <SingleRestaurant key={_id} picture={picture} name={name} id={_id} />
-
-                    ))
-                }
+                    <SingleRestaurant key={restaurantId} id={restaurantId} picture={restaurantData?.picture} name={restaurantData?.name} />
+                ))}
 
             </div>  </div>
     );

@@ -1,4 +1,4 @@
-// "use client";
+"use client"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, EffectFade, Grid } from "swiper/modules";
 import Image from "next/image";
@@ -40,7 +40,7 @@ function HomePageSlider() {
                 >
                     {imagesForSlider &&
                         imagesForSlider.map(image => (
-                            <SwiperSlide className="rounded-3xl overflow-hidden bg-blue-600" key={image}>
+                            <SwiperSlide className="rounded-3xl overflow-hidden bg-blue-600" key={image + '' + Math.random()}>
                                 <div className="w-full h-[200px] lg:h-[200px] overflow-hidden flex items-center justify-center ">
                                     <Image
                                         src={imagesForSlider[0]}
